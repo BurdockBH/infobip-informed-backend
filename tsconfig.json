@@ -1,0 +1,8 @@
+{
+  "strict": true,
+  "noImplicitAny": true,
+  "strictNullChecks": true,
+  "strictFunctionTypes": true,
+  "noImplicitThis": true,
+  "alwaysStrict": true
+}

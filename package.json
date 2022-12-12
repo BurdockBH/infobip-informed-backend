@@ -1,0 +1,16 @@
+{
+  "name": "informed-backend",
+  "version": "1.0.0",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "prettier": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.13",
+    "nodemon": "^2.0.20"
+  },
+  "compilerOptions": {
+    "esModuleInterop": true
+  }
+}
