@@ -15,34 +15,52 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// let articles;
-
+//
 // pool
 //   .query("SELECT * FROM articles")
-//   .then((res) => (articles = res.rows))
+//   .then((res) => articles = res.rows)
 //   .catch((err) => console.error("Error executing query", err.stack));
 
-// app.get("/", (req, res) => {
-//   res.send(nesto);
+// pool.connect((err, client, done) => {
+//   if (err) throw err;
+//   client.query("SELECT * FROM articles", [], (err, result) => {
+//     done();
+//     if (err)
+//       throw err;
+//
+//    console.log(result.rows);
+//   });
+// });
+
+// console.log(result.rows);
+
+// app.get("/articles", (req, res) => {
+//   pool.connect((err, client, done) => {
+//     if (err) throw err;
+//     client.query("SELECT * FROM articles", [], (err, result) => {
+//       done();
+//       if (err) throw err;
+//       let articles = result.rows;
+//       client.query(`SELECT * FROM comments`, [], (err2, result2) => {
+//         if (err2) throw err2;
+//         for (let article of articles) {
+//           let c = [];
+//           for (let comment of result2.rows) {
+//             if (comment.article_id == article.id) c.push(comment);
+//           }
+//           articles.find((x) => x.id == article.id)["comments"] = c;
+//         }
+//         res.send(articles);
+//       });
+//     });
+//   });
 // });
 
 app.get("/articles", (req, res) => {
-  pool.connect((err, client, done) => {
-    if (err) throw err;
-    client.query("SELECT * FROM articles", [], (err, result) => {
-      done();
-      if (err) {
-        throw err;
-      }
-      res.send(result.rows);
-    });
-  });
+  res.status(200);
+  res.send(DUMMY);
 });
 
-// app.get("/articles", (req, res) => {
-//   res.status(200);
-//   res.send(DUMMY);
-// });
 app.get("/categories", (req, res) => {
   res.status(200);
   res.send(categories);
