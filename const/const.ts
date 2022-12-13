@@ -31,6 +31,8 @@ export const DUMMY = [
     title: "Lorem ipsum dolor sit amet THIS IS ID 0",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     category: "Technology",
+    img_url:
+      "https://res.cloudinary.com/etf/image/upload/v1651674959/Elektrotehnicki_fakultet_abpipq_5294d8c983.jpg",
     text: DUMMY_TEXT,
     comments: [COMMENT],
   },
@@ -39,6 +41,8 @@ export const DUMMY = [
     title: "Lorem ipsum dolor sit amet THIS IS ID 1",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     category: "Technology",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/4/48/Prirodno_matemati%C4%8Dki_fakultet%2C_Sarajevo.jpg",
     text: DUMMY_TEXT,
     comments: [COMMENT],
   },
@@ -47,6 +51,8 @@ export const DUMMY = [
     title: "Lorem ipsum dolor sit amet THIS IS ID 2",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     category: "Technology",
+    img_url:
+      "https://upload.wikimedia.org/wikipedia/commons/9/98/BBI_Shopping_and_Business_Center.jpg",
     text: DUMMY_TEXT,
     comments: [COMMENT],
   },
@@ -55,6 +61,8 @@ export const DUMMY = [
     title: "Lorem ipsum dolor sit amet THIS IS ID 3",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     category: "Sports",
+    img_url:
+      "https://cdn.nba.com/manage/2022/12/GettyImages-1245571186-scaled.jpg",
     text: DUMMY_TEXT,
     comments: [COMMENT],
   },
@@ -63,6 +71,8 @@ export const DUMMY = [
     title: "Lorem ipsum dolor sit amet THIS IS ID 4",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     category: "Sports",
+    img_url:
+      "https://img.olympicchannel.com/images/image/private/t_social_share_thumb/f_auto/primary/qjxgsf7pqdmyqzsptxju",
     text: DUMMY_TEXT,
     comments: [COMMENT],
   },
