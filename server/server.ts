@@ -1,5 +1,3 @@
-import { DUMMY_HEADER, categories } from "../const/const";
-
 const express = require("express");
 const cors = require("cors");
 const Pool = require("pg").Pool;
@@ -19,33 +17,43 @@ app.use(express.static("public"));
 app.get("/articles", (req, res) => {
   pool.connect((err, client, done) => {
     if (err) throw err;
+
     client.query("SELECT * FROM articles", [], (err, result) => {
-      done();
       if (err) throw err;
       let articles = result.rows;
-      client.query(`SELECT * FROM comments`, [], (err2, result2) => {
-        if (err2) throw err2;
-        for (let article of articles) {
-          let c = [];
-          for (let comment of result2.rows) {
-            if (comment.article_id == article.id) c.push(comment);
+      client.query(
+        `SELECT *
+           FROM comments`,
+        [],
+        (err2, result2) => {
+          if (err2) throw err2;
+          for (let article of articles) {
+            let c = [];
+            for (let comment of result2.rows) {
+              if (comment.article_id == article.id) c.push(comment);
+            }
+            articles.find((x) => x.id == article.id)["comments"] = c;
           }
-          articles.find((x) => x.id == article.id)["comments"] = c;
+          res.send(articles);
+          done();
         }
-        res.send(articles);
-      });
+      );
     });
   });
 });
 
-app.get("/categories", (req, res) => {
-  res.status(200);
-  res.send(categories);
-});
-
-app.get("/head-article", (req, res) => {
-  res.status(200);
-  res.send(DUMMY_HEADER);
+app.post("/new-comment", (req, res) => {
+  pool.connect((err, client, done) => {
+    if (err) throw err;
+    const query = `INSERT INTO comments(content, time, article_id)
+                   VALUES ('${req.body.content}', '${req.body.time}', ${req.body.article_id})`;
+    if (err) throw err;
+    client.query(query, [], (err) => {
+      if (err) throw err;
+      res.send({ message: "Comment inserted" });
+      done();
+    });
+  });
 });
 
 app.listen(8000, () => {
