@@ -20,25 +20,27 @@ app.get("/articles", (req, res) => {
 
     client.query("SELECT * FROM articles", [], (err, result) => {
       if (err) throw err;
-      let articles = result.rows;
-      client.query(
-        `SELECT *
-           FROM comments`,
-        [],
-        (err2, result2) => {
-          if (err2) throw err2;
-          for (let article of articles) {
-            let c = [];
-            for (let comment of result2.rows) {
-              if (comment.article_id == article.id) c.push(comment);
-            }
-            articles.find((x) => x.id == article.id)["comments"] = c;
-          }
-          res.send(articles);
-          done();
-        }
-      );
+
+      res.send(result.rows);
+      done();
     });
+  });
+});
+
+app.get("/comments", (req, res) => {
+  const article_id = req.query.id;
+  pool.connect((err, client, done) => {
+    if (err) throw err;
+
+    client.query(
+      `SELECT * FROM comments WHERE article_id = ${article_id}`,
+      [],
+      (err, result) => {
+        if (err) throw err;
+        res.send(result.rows);
+        done();
+      }
+    );
   });
 });
 
