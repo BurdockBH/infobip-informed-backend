@@ -19,7 +19,6 @@ app.get("/articles", (req, res) => {
     if (err) throw err;
     client.query("SELECT * FROM articles", [], (err, result) => {
       if (err) throw err;
-
       res.send(result.rows);
       done();
     });
