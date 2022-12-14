@@ -14,25 +14,7 @@ const pool = new Pool({
 const app = express();
 app.use(cors());
 app.use(express.json());
-
-//
-// pool
-//   .query("SELECT * FROM articles")
-//   .then((res) => articles = res.rows)
-//   .catch((err) => console.error("Error executing query", err.stack));
-
-// pool.connect((err, client, done) => {
-//   if (err) throw err;
-//   client.query("SELECT * FROM articles", [], (err, result) => {
-//     done();
-//     if (err)
-//       throw err;
-//
-//    console.log(result.rows);
-//   });
-// });
-
-// console.log(result.rows);
+app.use(express.static("public"));
 
 app.get("/articles", (req, res) => {
   pool.connect((err, client, done) => {
@@ -56,11 +38,6 @@ app.get("/articles", (req, res) => {
   });
 });
 
-// app.get("/articles", (req, res) => {
-//   res.status(200);
-//   res.send(DUMMY);
-// });
-
 app.get("/categories", (req, res) => {
   res.status(200);
   res.send(categories);
@@ -70,8 +47,6 @@ app.get("/head-article", (req, res) => {
   res.status(200);
   res.send(DUMMY_HEADER);
 });
-
-// app.post("/comment"), (req, res) => {};
 
 app.listen(8000, () => {
   console.log(`Server is running on port 8000.`);
