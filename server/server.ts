@@ -17,7 +17,6 @@ app.use(express.static("public"));
 app.get("/articles", (req, res) => {
   pool.connect((err, client, done) => {
     if (err) throw err;
-
     client.query("SELECT * FROM articles", [], (err, result) => {
       if (err) throw err;
 
@@ -31,7 +30,6 @@ app.get("/comments", (req, res) => {
   const article_id = req.query.id;
   pool.connect((err, client, done) => {
     if (err) throw err;
-
     client.query(
       `SELECT * FROM comments WHERE article_id = ${article_id}`,
       [],
